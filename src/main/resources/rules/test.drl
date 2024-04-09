@@ -1,0 +1,8 @@
+
+
+rule "my_rule"
+    when
+        eval(true)
+    then
+        System.out.println("规则test_rule触发");
+end

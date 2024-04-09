@@ -1,0 +1,36 @@
+
+
+function String sayHello(String name){
+      return "hello"+name;
+}
+
+
+
+rule "rule_1"
+    salience 8
+    when
+        eval(true)
+    then
+        System.out.println("规则rule_1触发");
+end
+
+rule "rule_2"
+    salience 9
+    when
+        eval(true)
+    then
+        System.out.println("规则rule_2触发");
+end
+
+rule "rule_3"
+    salience 10
+    when
+        eval(true)
+    then
+        System.out.println("规则rule_3触发");
+        String ret=sayHello("jiangjie");
+        System.out.println(ret);
+
+        drools.halt();
+        //System.out.println(drools.getWorkingMemory());
+end

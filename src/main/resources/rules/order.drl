@@ -1,0 +1,36 @@
+
+import com.example.demo.model.Order;
+
+
+//100元以下,不加分
+rule "score_1"
+when
+    $order:Order(price<100)
+then
+    $order.setScore($order.getScore()+0);
+    System.out.println("触发了规则:100元以下,不加分");
+end
+//100元-500元加100分
+rule "score_2"
+when
+    $order:Order(price>=100&&price<500)
+then
+    $order.setScore($order.getScore()+100);
+    System.out.println("触发了规则:100元-500元加100分");
+end
+//500元-1000元加500分
+rule "score_3"
+when
+    $order:Order(price>=500&&price<1000)
+then
+    $order.setScore($order.getScore()+500);
+    System.out.println("触发了规则:500元-1000元加500分");
+end
+//1000元以上加1000分
+rule "score_4"
+when
+    $order:Order(price>=1000)
+then
+    $order.setScore($order.getScore()+1000);
+    System.out.println("触发了规则:1000元以上加1000分");
+end

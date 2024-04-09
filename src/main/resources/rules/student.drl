@@ -1,0 +1,46 @@
+import com.example.demo.model.Student;
+
+/*
+ 当前规则文件用于测试Drools提供的内置方法
+*/
+
+
+global java.lang.Integer count
+global java.util.ArrayList gList
+global com.example.demo.service.TestService testService
+
+
+rule "rule_student_age小于10岁"
+    no-loop true
+    when
+        $s:Student(age < 10)
+    then
+        count += 10;
+        gList.add("a");
+        gList.add("b");
+        testService.save();//全局save
+        //update($s);//更新数据，导致相关的规则会重新匹配
+        System.out.println(drools.getRule());
+        System.out.println(count);
+        System.out.println("glist.size"+gList.size());
+        System.out.println("规则rule_student_age小于10岁触发");
+end
+
+
+
+
+query "query_1"
+     $student:Student(age>20)
+end
+
+
+
+query "query_2"(String sname)
+     $student:Student(age>20 && name==sname )
+end
+
+
+
+
+
+
